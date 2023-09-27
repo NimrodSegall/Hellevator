@@ -1,5 +1,5 @@
 using Assets.Scripts.Player;
-using UnityEngine;
+using Assets.Scripts.Utils;
 using Zenject;
 
 public class ProjectContextMainInstaller : MonoInstaller
@@ -15,5 +15,11 @@ public class ProjectContextMainInstaller : MonoInstaller
         var constants = new Constants();
         Container.Bind<Constants>()
             .FromInstance(constants);
+
+        Container.Bind<Timer>()
+            .AsTransient();
+        Container.Bind<ITickable>()
+            .To<Timer>()
+            .AsTransient();
     }
 }

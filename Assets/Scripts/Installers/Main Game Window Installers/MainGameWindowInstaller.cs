@@ -1,6 +1,7 @@
 using UnityEngine;
 using Zenject;
 using Cinemachine;
+using Assets.Scripts.Client;
 
 public class MainGameWindowInstaller : MonoInstaller
 {
@@ -29,11 +30,13 @@ public class MainGameWindowInstaller : MonoInstaller
             .FromInstance(_clientsStandingSpotOutsideElevator)
             .AsSingle();
 
-        ClientsManager _clientsManager = new ClientsManager();
+        ClientsManager clientsManager = new ClientsManager();
         Container.Bind<ClientsManager>()
-            .FromInstance(_clientsManager)
+            .FromInstance(clientsManager)
             .AsSingle();
-        Container.QueueForInject(_clientsManager);
+        Container.Bind<ITickable>()
+            .FromInstance(clientsManager);
+        Container.QueueForInject(clientsManager);
 
         ElevatorManager _elevatorManager = new ElevatorManager();
         Container.Bind<ElevatorManager>()
@@ -41,15 +44,15 @@ public class MainGameWindowInstaller : MonoInstaller
             .AsSingle();
         Container.QueueForInject(_elevatorManager);
 
-        ClientsDataHandler _clientsDataHandler = new ClientsDataHandler();
-        Container.Bind<ClientsDataHandler>()
+        ClientsLevelDataGenerator _clientsDataHandler = new ClientsLevelDataGenerator();
+        Container.Bind<ClientsLevelDataGenerator>()
             .FromInstance(_clientsDataHandler)
             .AsSingle();
         Container.QueueForInject(_clientsDataHandler);
 
         Container.Bind<FloorBarMarkersLayoutManager>()
-        .FromInstance(_floorMarkersLayoutManager)
-        .AsSingle();
+            .FromInstance(_floorMarkersLayoutManager)
+            .AsSingle();
 
         Container.Bind<CinemachineVirtualCamera>()
             .WithId(MainGameWindowInstallerIds.VirtualCamera)
@@ -80,6 +83,12 @@ public class MainGameWindowInstaller : MonoInstaller
         Container.Bind<ScrollingBackgroundController>()
             .WithId(MainGameWindowInstallerIds.ElevatorWindowScrollingBackground)
             .FromInstance(_windowBackgroundController)
+            .AsSingle();
+
+
+        var clientsSpawner = new NewActiveClientsProvider();
+        Container.Bind<NewActiveClientsProvider>()
+            .FromInstance(clientsSpawner)
             .AsSingle();
     }
 

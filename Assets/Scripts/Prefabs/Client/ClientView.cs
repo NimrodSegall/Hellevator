@@ -1,10 +1,16 @@
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ClientView : View<ClientController, ClientView, ClientModel>
 {
+    [SerializeField] private GameObject _spriteObject;
+    [SerializeField] private TMP_Text _targetFloorText;
+    [SerializeField] private Slider _patienceSlider;
     [SerializeField] private AnimationCurve _animCurve;
+    
 
     private Transform _rootTransform;
 
@@ -23,6 +29,6 @@ public class ClientView : View<ClientController, ClientView, ClientModel>
 
     public async UniTask FlipXScale(float xScaleValue)
     {
-        await _rootTransform.DOScaleX(xScaleValue, _model.flipAnimationDuration);
+        await _spriteObject.transform.DOScaleX(xScaleValue, _model.flipAnimationDuration);
     }
 }

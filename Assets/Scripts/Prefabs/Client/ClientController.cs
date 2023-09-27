@@ -4,7 +4,7 @@ using Zenject;
 
 public class ClientController : AnimatedController<ClientController, ClientView, ClientModel>
 {
-    public int TargetFloor => _model.targetFloor;
+    public int TargetFloor => _model.departsOnFloorNum;
 
     public async UniTask MoveToElevator()
     {

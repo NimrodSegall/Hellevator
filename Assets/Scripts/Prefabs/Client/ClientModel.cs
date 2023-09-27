@@ -6,23 +6,26 @@ public class ClientModel
     public readonly Transform standingPointOutsideElevator;
     public readonly float moveAnimationDuration;
     public readonly float flipAnimationDuration;
-    public readonly int originFloor;
-    public readonly int targetFloor;
+    public readonly int arrivesOnFloorNum;
+    public readonly int departsOnFloorNum;
+    public readonly int id;
 
     public ClientModel(
         Transform standingPointInElevator,
         Transform standingPointOutsideElevator,
         float moveAnimationDuration,
         float flipAnimationDuration,
-        int originFloor,
-        int targetFloor
+        int arrivesOnFloorNum,
+        int departsOnFloorNum,
+        int id
         )
     {
         this.standingPointInElevator = standingPointInElevator;
         this.standingPointOutsideElevator = standingPointOutsideElevator;
         this.moveAnimationDuration = moveAnimationDuration;
         this.flipAnimationDuration = flipAnimationDuration;
-        this.originFloor = originFloor;
-        this.targetFloor = targetFloor;
+        this.arrivesOnFloorNum = arrivesOnFloorNum;
+        this.departsOnFloorNum = departsOnFloorNum;
+        this.id = id;
     }
 }
