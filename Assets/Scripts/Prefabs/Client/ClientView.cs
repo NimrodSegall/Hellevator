@@ -31,4 +31,9 @@ public class ClientView : View<ClientController, ClientView, ClientModel>
     {
         await _spriteObject.transform.DOScaleX(xScaleValue, _model.flipAnimationDuration);
     }
+
+    public void SetTargetFloorText()
+    {
+        _targetFloorText.text = _model.departsOnFloorNum.ToString();
+    }
 }

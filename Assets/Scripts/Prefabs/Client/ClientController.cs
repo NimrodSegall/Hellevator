@@ -6,6 +6,12 @@ public class ClientController : AnimatedController<ClientController, ClientView,
 {
     public int TargetFloor => _model.departsOnFloorNum;
 
+    public override void Initialize(ClientModel model)
+    {
+        base.Initialize(model);
+        SetTargetFloorText();
+    }
+
     public async UniTask MoveToElevator()
     {
         await MoveTowards(_model.standingPointInElevator.position, _model.moveAnimationDuration);
@@ -27,6 +33,11 @@ public class ClientController : AnimatedController<ClientController, ClientView,
         SetBusy();
         await _view.MoveTowards(target, duration);
         SetNotBusy();
+    }
+
+    private void SetTargetFloorText()
+    {
+        _view.SetTargetFloorText();
     }
 
     public class Factory : PlaceholderFactory<ClientModel, ClientController>

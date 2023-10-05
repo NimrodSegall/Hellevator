@@ -18,7 +18,7 @@ public class ElevatorManager
     public void Initialize()
     {
         _cameraShakeController.InitializeWithExistingModel();
-        _elevatorMarkerController.Initialize(new ElevatorMarkerModel(3f));
+        _elevatorMarkerController.Initialize(new ElevatorMarkerModel(1.5f));
         _floorBarController.Initialize(new FloorBarModel());
         _floorMeterController.Initialize(new FloorMeterModel());
         _doorsController.Initialize(new ElevatorDoorsModel(1.25f, 1.25f));

@@ -90,6 +90,11 @@ public class MainGameWindowInstaller : MonoInstaller
         Container.Bind<NewActiveClientsProvider>()
             .FromInstance(clientsSpawner)
             .AsSingle();
+
+        var ElevatorButtonsManager = new ElevatorButtonsManager();
+        Container.Bind<ElevatorButtonsManager>()
+            .FromInstance(ElevatorButtonsManager)
+            .AsSingle();
     }
 
     private CameraShakeController CreateAndQueueForInjectCameraShakeController()
@@ -97,8 +102,8 @@ public class MainGameWindowInstaller : MonoInstaller
         var model = new CameraShakeModel(
             250,
             0.25f,
-            2000,
-            500);
+            500,
+            250);
         CameraShakeController cameraShakeController = new CameraShakeController(model);
         Container.QueueForInject(cameraShakeController);
         return cameraShakeController;

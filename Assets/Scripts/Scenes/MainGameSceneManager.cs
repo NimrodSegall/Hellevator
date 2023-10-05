@@ -12,7 +12,7 @@ public class MainGameSceneManager : MonoStreamListener<OnElevatorButtonClickedSi
     [Inject] private readonly ElevatorManager _elevatorManager;
     [Inject] private readonly FloorBarMarkersLayoutManager _elevatorBarMarkersManager;
 
-    private const int TOTAL_NUMBER_OF_FLOORS = 5;
+    [SerializeField] private Transform _floorButtonsParent;
 
     void Start()
     {
@@ -22,7 +22,8 @@ public class MainGameSceneManager : MonoStreamListener<OnElevatorButtonClickedSi
     public override void Initialize()
     {
         base.Initialize();
-        _elevatorBarMarkersManager.Initialize(TOTAL_NUMBER_OF_FLOORS);
+        var totalNumberOfFloors = _floorButtonsParent.childCount;
+        _elevatorBarMarkersManager.Initialize(totalNumberOfFloors);
         _elevatorManager.Initialize();
         _clientsManager.Initialize();
     }

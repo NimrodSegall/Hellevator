@@ -45,5 +45,12 @@ namespace Assets.Scripts.Math
             }
             throw new ArgumentOutOfRangeException($"Could not find result in {nameof(possibleResults)}");
         }
+
+        public static T ChooseUniformlyFromIEnumerable<T>(IEnumerable<T> set)
+        {
+            var enumeratedSet = set.ToList();
+            var randomIndex = UnityEngine.Random.Range(0, enumeratedSet.Count);
+            return enumeratedSet[randomIndex];
+        }
     }
 }

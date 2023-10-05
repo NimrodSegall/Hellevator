@@ -1,5 +1,6 @@
 using Assets.Scripts.Player;
 using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using UniRx;
 using UnityEngine;
 using Zenject;
@@ -47,8 +48,8 @@ public class ElevatorMarkerController :
         return relativeVector.magnitude * scrollDirection;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public bool IsPlayingAnimation()
     {
-        Debug.Log($"Elevator enter {collision.GetComponent<FloorMarker>().FloorNumber}");
+        return DOTween.IsTweening(transform, true);
     }
 }

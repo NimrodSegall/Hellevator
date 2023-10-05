@@ -26,12 +26,15 @@ namespace Assets.Scripts.Client
 
         public void GenerateNewLevelData()
         {
+            var floorNumbers = Enumerable.Range(0, numberOfFloors + 1).ToArray();
             var totalLevelDuration = _constants.LEVEL_DURATION_SECONDS;
             var currentTime = 0f;
             while (totalLevelDuration - currentTime > 0)
             {
-                var arrivesOnFloor = GetRandomFloor();
-                var departsOnFloor = GetRandomFloor();
+                var arrivesOnFloor = GetRandomFloor(floorNumbers.ToList());
+                var departOptions = floorNumbers.ToList();
+                departOptions.Remove(arrivesOnFloor);
+                var departsOnFloor = GetRandomFloor(departOptions);
                 var arrivalTime = currentTime;
                 var id = NumberOfClients;
                 AddClient(new ClientData(arrivesOnFloor, departsOnFloor, arrivalTime, id));
@@ -44,11 +47,9 @@ namespace Assets.Scripts.Client
             _clientsLevelData.Add(newData);
         }
 
-        private int GetRandomFloor()
+        private int GetRandomFloor(IEnumerable<int> floorOptions)
         {
-            return Random.Range(0, numberOfFloors - 1);
+            return Probability.ChooseUniformlyFromIEnumerable(floorOptions);
         }
-
-
     }
 }
