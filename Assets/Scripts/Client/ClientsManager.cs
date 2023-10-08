@@ -46,6 +46,7 @@ namespace Assets.Scripts.Client
                     data.id);
                 _clientModelsToSpawn.Add(clientModel);
                 Debug.Log($"New client: From {data.arrivesOnFloor} to {data.departsOnFloor}");
+                _signalBus.Fire(new OnClientSpawnedSignal(data.arrivesOnFloor));
             }    
         }
 

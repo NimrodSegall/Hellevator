@@ -7,6 +7,7 @@ public class MainGameSceneSignalssInstaller : MonoInstaller
         SignalBusInstaller.Install(Container);
         Container.DeclareSignal<OnElevatorReachedDestinationSignal>();
         Container.DeclareSignal<OnElevatorButtonClickedSignal>();
+        Container.DeclareSignal<OnClientSpawnedSignal>();
         Container.DeclareSignal<OnClientsFinishedMovingAroundElevatorSignal>();
     }
 }

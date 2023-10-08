@@ -86,10 +86,11 @@ public class MainGameWindowInstaller : MonoInstaller
             .AsSingle();
 
 
-        var clientsSpawner = new NewActiveClientsProvider();
+        var newActiveClientsProvider = new NewActiveClientsProvider();
         Container.Bind<NewActiveClientsProvider>()
-            .FromInstance(clientsSpawner)
+            .FromInstance(newActiveClientsProvider)
             .AsSingle();
+        Container.QueueForInject(newActiveClientsProvider);
 
         var ElevatorButtonsManager = new ElevatorButtonsManager();
         Container.Bind<ElevatorButtonsManager>()

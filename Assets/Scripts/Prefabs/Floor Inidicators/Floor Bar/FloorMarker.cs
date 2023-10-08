@@ -1,19 +1,26 @@
 using Assets.Scripts.Player;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using Zenject;
 
-public class FloorMarker : MonoBehaviour
+public class FloorMarker : MonoStreamListener
+    <OnElevatorReachedDestinationSignal,
+    OnClientSpawnedSignal>
 {
     [Inject] private readonly Constants _constants;
     [Inject] private readonly PlayerData _playerData;
+    [SerializeField] private GameObject _highlightIndicatorObject;
+    [SerializeField] private TMP_Text _floorNumberText;
 
     public int FloorNumber { get; private set; }
 
     public void Initialize(Model model)
     {
+        base.Initialize();
         FloorNumber = model.floorNumber;
+        _floorNumberText.text = model.floorNumber.ToString();
         transform.position = model.position;
     }
 
@@ -22,6 +29,29 @@ public class FloorMarker : MonoBehaviour
         if (collision.CompareTag(_constants.ELEVATOR_MARKER_TAG))
         {
             _playerData.SetFloor(FloorNumber);
+        }
+    }
+
+    private void HighlightSetActive(bool isActive)
+    {
+        _highlightIndicatorObject.SetActive(isActive);
+    }
+
+    public override void InvokedFromSignal(OnClientSpawnedSignal signal)
+    {
+        if (signal.clientSpawnFloor == FloorNumber)
+        {
+            base.InvokedFromSignal(signal);
+            HighlightSetActive(true);
+        }
+    }
+
+    public override void InvokedFromSignal(OnElevatorReachedDestinationSignal signal)
+    {
+        if (signal.floorNumberReached == FloorNumber)
+        {
+            base.InvokedFromSignal(signal);
+            HighlightSetActive(false);
         }
     }
 

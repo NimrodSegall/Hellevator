@@ -9,6 +9,7 @@ namespace Assets.Scripts.Client
 {
     public class NewActiveClientsProvider
     {
+        [Inject] private readonly SignalBus _signalBus;
         private float startTime;
         private List<ClientData> _clientsData;
 

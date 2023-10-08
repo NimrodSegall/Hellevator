@@ -17,7 +17,7 @@ namespace Assets.Scripts.Client
         private float _minTimeBetweenSpawns = 10;
         private float _maxTimeBetweenSpawns = 30;
 
-        private int numberOfFloors = 6;
+        private int numberOfFloors = 5;
 
         public ClientsLevelDataGenerator()
         {
