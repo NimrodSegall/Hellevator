@@ -2,12 +2,14 @@ using UnityEngine;
 using Cysharp.Threading.Tasks;
 using Zenject;
 using Assets.Scripts.Utils;
+using Assets.Scripts.Signals;
 
 public class ClientController : AnimatedController<ClientController, ClientView, ClientModel>
 {
     public int TargetFloor => _model.departsOnFloorNum;
 
     [Inject] private readonly DeltaTimer _patienceTimer;
+    [Inject] private readonly SignalBus _signalBus;
 
     public override void Initialize(ClientModel model)
     {
@@ -46,7 +48,7 @@ public class ClientController : AnimatedController<ClientController, ClientView,
 
     private void OnPatienceRunsOut()
     {
-        Debug.Log("Patience ran out!");
+        _signalBus.Fire(new OnClientPatienceRanOut(this));
     }
 
     private void OnPatienceTickDown()
