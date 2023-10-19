@@ -43,7 +43,8 @@ namespace Assets.Scripts.Client
                     1f,
                     data.arrivesOnFloor,
                     data.departsOnFloor,
-                    data.id);
+                    data.id,
+                    data.clientPatianceTime);
                 _clientModelsToSpawn.Add(clientModel);
                 Debug.Log($"New client: From {data.arrivesOnFloor} to {data.departsOnFloor}");
                 _signalBus.Fire(new OnClientSpawnedSignal(data.arrivesOnFloor));

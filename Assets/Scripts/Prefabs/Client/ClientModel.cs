@@ -9,6 +9,7 @@ public class ClientModel
     public readonly int arrivesOnFloorNum;
     public readonly int departsOnFloorNum;
     public readonly int id;
+    public readonly float patienceDuration;
 
     public ClientModel(
         Transform standingPointInElevator,
@@ -17,7 +18,8 @@ public class ClientModel
         float flipAnimationDuration,
         int arrivesOnFloorNum,
         int departsOnFloorNum,
-        int id
+        int id,
+        float patienceDuration
         )
     {
         this.standingPointInElevator = standingPointInElevator;
@@ -27,5 +29,6 @@ public class ClientModel
         this.arrivesOnFloorNum = arrivesOnFloorNum;
         this.departsOnFloorNum = departsOnFloorNum;
         this.id = id;
+        this.patienceDuration = patienceDuration;
     }
 }

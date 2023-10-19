@@ -16,10 +16,6 @@ public class ProjectContextMainInstaller : MonoInstaller
         Container.Bind<Constants>()
             .FromInstance(constants);
 
-        Container.Bind<Timer>()
-            .AsTransient();
-        Container.Bind<ITickable>()
-            .To<Timer>()
-            .AsTransient();
+        Container.BindInterfacesAndSelfTo<DeltaTimer>().AsCached();
     }
 }

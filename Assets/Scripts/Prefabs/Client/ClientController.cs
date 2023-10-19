@@ -1,15 +1,19 @@
 using UnityEngine;
 using Cysharp.Threading.Tasks;
 using Zenject;
+using Assets.Scripts.Utils;
 
 public class ClientController : AnimatedController<ClientController, ClientView, ClientModel>
 {
     public int TargetFloor => _model.departsOnFloorNum;
 
+    [Inject] private readonly DeltaTimer _patienceTimer;
+
     public override void Initialize(ClientModel model)
     {
         base.Initialize(model);
         SetTargetFloorText();
+        _patienceTimer.Initialize(model.patienceDuration, OnPatienceRunsOut, OnPatienceTickDown);
     }
 
     public async UniTask MoveToElevator()
@@ -38,6 +42,16 @@ public class ClientController : AnimatedController<ClientController, ClientView,
     private void SetTargetFloorText()
     {
         _view.SetTargetFloorText();
+    }
+
+    private void OnPatienceRunsOut()
+    {
+        Debug.Log("Patience ran out!");
+    }
+
+    private void OnPatienceTickDown()
+    {
+        _view.SubtractPatience(Time.deltaTime / _model.patienceDuration);
     }
 
     public class Factory : PlaceholderFactory<ClientModel, ClientController>

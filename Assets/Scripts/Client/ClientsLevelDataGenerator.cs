@@ -17,6 +17,8 @@ namespace Assets.Scripts.Client
         private float _minTimeBetweenSpawns = 10;
         private float _maxTimeBetweenSpawns = 30;
 
+        private float _clientPatianceTime = 60f;
+
         private int numberOfFloors = 5;
 
         public ClientsLevelDataGenerator()
@@ -37,7 +39,7 @@ namespace Assets.Scripts.Client
                 var departsOnFloor = GetRandomFloor(departOptions);
                 var arrivalTime = currentTime;
                 var id = NumberOfClients;
-                AddClient(new ClientData(arrivesOnFloor, departsOnFloor, arrivalTime, id));
+                AddClient(new ClientData(arrivesOnFloor, departsOnFloor, arrivalTime, id, _clientPatianceTime));
                 currentTime += Random.Range(_minTimeBetweenSpawns, _maxTimeBetweenSpawns);
             }
         }

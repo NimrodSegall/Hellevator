@@ -36,4 +36,14 @@ public class ClientView : View<ClientController, ClientView, ClientModel>
     {
         _targetFloorText.text = _model.departsOnFloorNum.ToString();
     }
+
+    public void AddPatience(float amount)
+    {
+        _patienceSlider.value += amount;
+    }
+
+    public void SubtractPatience(float amount)
+    {
+        AddPatience(-amount);
+    }
 }
