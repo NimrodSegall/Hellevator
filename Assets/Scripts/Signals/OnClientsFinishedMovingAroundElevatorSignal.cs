@@ -1,11 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
-public class OnClientsFinishedMovingAroundElevatorSignal : ISignal
+namespace Assts.Scripts.Signals
 {
-    public OnClientsFinishedMovingAroundElevatorSignal()
+    public class OnClientsFinishedMovingAroundElevatorSignal : ISignal
     {
+        public OnClientsFinishedMovingAroundElevatorSignal()
+        {
 
+        }
     }
 }

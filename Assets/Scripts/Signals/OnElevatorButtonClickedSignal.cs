@@ -1,13 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
-public class OnElevatorButtonClickedSignal : ISignal
+namespace Assts.Scripts.Signals
 {
-    public readonly int floorNumber;
-
-    public OnElevatorButtonClickedSignal(int floorNumber)
+    public class OnElevatorButtonClickedSignal : ISignal
     {
-        this.floorNumber = floorNumber;
+        public readonly int floorNumber;
+
+        public OnElevatorButtonClickedSignal(int floorNumber)
+        {
+            this.floorNumber = floorNumber;
+        }
     }
 }

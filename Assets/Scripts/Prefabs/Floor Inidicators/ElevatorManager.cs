@@ -1,7 +1,6 @@
 using Assets.Scripts.Player;
+using Assts.Scripts.Signals;
 using Cysharp.Threading.Tasks;
-using UniRx;
-using UnityEngine;
 using Zenject;
 
 public class ElevatorManager

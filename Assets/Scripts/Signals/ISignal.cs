@@ -1,4 +1,7 @@
 ﻿
-public interface ISignal
+namespace Assts.Scripts.Signals
 {
+    public interface ISignal
+    {
+    }
 }

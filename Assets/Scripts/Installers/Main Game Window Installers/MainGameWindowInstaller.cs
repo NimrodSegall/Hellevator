@@ -18,6 +18,9 @@ public class MainGameWindowInstaller : MonoInstaller
 
     public override void InstallBindings()
     {
+        // Enable Zenject logging to get more detailed error messages
+        Container.BindInterfacesAndSelfTo<ZenjectSettings>().AsSingle();
+
         Container.Bind<Transform[]>()
             .WithId(MainGameWindowInstallerIds.ClientsStandingSpotsInElevator)
             .To<Transform[]>()

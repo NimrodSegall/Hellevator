@@ -1,6 +1,5 @@
 using Assets.Scripts.Player;
-using System.Collections;
-using System.Collections.Generic;
+using Assts.Scripts.Signals;
 using TMPro;
 using UnityEngine;
 using Zenject;

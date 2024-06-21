@@ -2,36 +2,43 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PopupView : View<PopupController, PopupView, PopupModel>
+namespace Assets.Scripts.Popup
 {
-    [SerializeField] private Button _closeButton;
-    [SerializeField] private TMP_Text _title;
-    [SerializeField] private TMP_Text _body;
-
-    public override void Initialize(PopupModel model, PopupController controller)
+    public abstract class PopupView<TPopupController, TPopupView, TPopupModel>
+    : View<TPopupController, TPopupView, TPopupModel>
+        where TPopupController : PopupController<TPopupController, TPopupView, TPopupModel>
+        where TPopupView : PopupView<TPopupController, TPopupView, TPopupModel>
+        where TPopupModel : PopupModel
     {
-        base.Initialize(model, controller);
-        if (_closeButton != null)
+        [SerializeField] private Button _closeButton;
+        [SerializeField] private TMP_Text _title;
+        [SerializeField] private TMP_Text _body;
+
+        public override void Initialize(TPopupModel model, TPopupController controller)
         {
-            _closeButton.onClick.AddListener(ClosePopup);
-        }
-    }
-
-    virtual protected void ClosePopup()
-    {
-        _controller.Close();
-    }
-
-    public void SetInitialTexts()
-    {
-        if (_title != null)
-        {
-            _title.text = _model.title;
+            base.Initialize(model, controller);
+            if (_closeButton != null)
+            {
+                _closeButton.onClick.AddListener(ClosePopup);
+            }
         }
 
-        if (_body != null)
+        virtual protected void ClosePopup()
         {
-            _body.text = _model.body;
+            _controller.Close();
+        }
+
+        public void SetInitialTexts()
+        {
+            if (_title != null)
+            {
+                _title.text = _model.title;
+            }
+
+            if (_body != null)
+            {
+                _body.text = _model.body;
+            }
         }
     }
 }

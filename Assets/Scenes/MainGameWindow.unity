@@ -533,6 +533,8 @@ MonoBehaviour:
   _clientsPoolTransform: {fileID: 1172018289}
   _floorMarkerPrefab: {fileID: 4626912237736176084, guid: aa9c7fc140f9fa6479ebbf5819272b94, type: 3}
   _floorMarkerPoolTransform: {fileID: 7140008453116531272}
+  _gameOverPopupControllerPrefab: {fileID: 3493435612840291857, guid: 6f9ea6a0167dd0d48b089940a3aed08e, type: 3}
+  _popupsTransform: {fileID: 1455039379}
 --- !u!1 &338578144
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,10 +1,13 @@
 
-public class OnClientSpawnedSignal : ISignal
+namespace Assts.Scripts.Signals
 {
-    public readonly int clientSpawnFloor;
-
-    public OnClientSpawnedSignal(int clientSpawnFloor)
+    public class OnClientSpawnedSignal : ISignal
     {
-        this.clientSpawnFloor = clientSpawnFloor;
+        public readonly int clientSpawnFloor;
+
+        public OnClientSpawnedSignal(int clientSpawnFloor)
+        {
+            this.clientSpawnFloor = clientSpawnFloor;
+        }
     }
 }

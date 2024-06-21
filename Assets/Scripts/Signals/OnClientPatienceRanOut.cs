@@ -1,4 +1,6 @@
 ﻿
+using Assts.Scripts.Signals;
+
 namespace Assets.Scripts.Signals
 {
     class OnClientPatienceRanOut : ISignal

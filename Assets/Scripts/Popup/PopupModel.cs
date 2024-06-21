@@ -1,5 +1,9 @@
-﻿public class PopupModel
+﻿
+namespace Assets.Scripts.Popup
 {
-    public readonly string title;
-    public readonly string body;
+    public abstract class PopupModel
+    {
+        public readonly string title;
+        public readonly string body;
+    }
 }

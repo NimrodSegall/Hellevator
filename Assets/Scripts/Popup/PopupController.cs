@@ -2,16 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PopupController : MonoController<PopupController, PopupView, PopupModel>
+namespace Assets.Scripts.Popup
 {
-    public override void Initialize(PopupModel model)
+    public abstract class PopupController<TPopupController, TPopupView, TPopupModel>
+    : MonoController<TPopupController, TPopupView, TPopupModel>
+        where TPopupController : PopupController<TPopupController, TPopupView, TPopupModel>
+        where TPopupView : PopupView<TPopupController, TPopupView, TPopupModel>
+        where TPopupModel : PopupModel
     {
-        base.Initialize(model);
-        _view.SetInitialTexts();
-    }
+        public override void Initialize(TPopupModel model)
+        {
+            base.Initialize(model);
+            _view.SetInitialTexts();
+        }
 
-    public virtual void Close()
-    {
-        Destroy(this);
+        public virtual void Close()
+        {
+            Destroy(this);
+        }
     }
 }

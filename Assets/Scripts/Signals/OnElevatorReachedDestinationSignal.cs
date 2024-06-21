@@ -1,12 +1,15 @@
 
-public class OnElevatorReachedDestinationSignal : ISignal
+namespace Assts.Scripts.Signals
 {
-    public readonly int floorNumberReached;
-
-    public OnElevatorReachedDestinationSignal(int floorNumberReached)
+    public class OnElevatorReachedDestinationSignal : ISignal
     {
-        this.floorNumberReached = floorNumberReached;
-    }
+        public readonly int floorNumberReached;
 
-    
+        public OnElevatorReachedDestinationSignal(int floorNumberReached)
+        {
+            this.floorNumberReached = floorNumberReached;
+        }
+
+
+    }
 }
